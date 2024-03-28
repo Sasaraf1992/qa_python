@@ -5,8 +5,6 @@ from main import BooksCollector
 
 class TestBooksCollector:
 
-
-
     @pytest.mark.parametrize("name",
                              [
                                  "К",
@@ -36,8 +34,8 @@ class TestBooksCollector:
 
     def test_genre_initialization(self):
         bc = BooksCollector()
-        expexted_genre = ["Фантастика", "Ужасы", "Детективы", "Мультфильмы", "Комедии"]
-        assert bc.genre == expexted_genre
+        expeсted_genre = ["Фантастика", "Ужасы", "Детективы", "Мультфильмы", "Комедии"]
+        assert bc.genre == expeсted_genre
 
     def test_genre_age_rating_initialization(self):
         bc = BooksCollector()
@@ -50,8 +48,6 @@ class TestBooksCollector:
         bc.set_book_genre("Гарри Поттер", "Фантастика")
         assert bc.get_book_genre("Гарри Поттер") == "Фантастика"
 
-
-
     def test_set_books_genre_if_book_false(self):
         bc = BooksCollector()
         bc.set_book_genre("Молчание ягнят", "Фантастика")
@@ -59,9 +55,9 @@ class TestBooksCollector:
 
     def test_get_book_genre_if_genre_true(self):
         bc = BooksCollector()
-        bc.add_new_book( "Гарри Поттер")
-        bc.set_book_genre( "Гарри Поттер", "Фантастика")
-        assert bc.get_book_genre( "Гарри Поттер") == "Фантастика"
+        bc.add_new_book("Гарри Поттер")
+        bc.set_book_genre("Гарри Поттер", "Фантастика")
+        assert bc.get_book_genre("Гарри Поттер") == "Фантастика"
 
     def test_get_book_genre_if_genre_false(self):
         bc = BooksCollector()
@@ -78,7 +74,6 @@ class TestBooksCollector:
         bc.add_new_book("Программирование на Python")
         bc.set_book_genre("Программирование на Python", "Фантастика")
         assert bc.get_books_with_specific_genre("Фантастика") == ["Гарри Поттер", "Программирование на Python"]
-
 
     def test_get_books_genre_with_two_books(self):
         bc = BooksCollector()
@@ -98,23 +93,22 @@ class TestBooksCollector:
         bc.set_book_genre("Программирование на Python", "Комедии")
         assert bc.get_books_for_children() == ["Гарри Поттер", "Программирование на Python"]
 
-    def test_add_book_in_favorite_unique(self, book_name):
+    def test_add_book_in_favorite_unique(self):
         bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.add_book_in_favorites(book_name)
-        assert book_name in bc.get_list_of_favorites_books()
+        bc.add_new_book("Гарри Поттер")
+        bc.add_book_in_favorites("Гарри Поттер")
+        assert "Гарри Поттер" in bc.get_list_of_favorites_books()
 
-    def test_add_book_in_favorite_same_book(self, book_name):
+    def test_add_book_in_favorite_same_book(self):
         bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.add_book_in_favorites(book_name)
-        bc.add_book_in_favorites(book_name)
+        bc.add_new_book("Гарри Поттер")
+        bc.add_book_in_favorites("Гарри Поттер")
+        bc.add_book_in_favorites("Гарри Поттер")
         assert len(bc.get_list_of_favorites_books()) == 1
 
-    def test_delete_book_from_favorites_added_book(self, book_name):
+    def test_delete_book_from_favorites_added_book(self):
         bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.add_book_in_favorites(book_name)
-        bc.delete_book_from_favorites(book_name)
-        assert book_name not in bc.get_list_of_favorites_books()
-
+        bc.add_new_book("Гарри Поттер")
+        bc.add_book_in_favorites("Гарри Поттер")
+        bc.delete_book_from_favorites("Гарри Поттер")
+        assert "Гарри Поттер" not in bc.get_list_of_favorites_books()
