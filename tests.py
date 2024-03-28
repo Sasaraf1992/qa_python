@@ -5,10 +5,7 @@ from main import BooksCollector
 
 class TestBooksCollector:
 
-    @pytest.fixture
-    def book_name(self):
-        name = "Гарри Поттер"
-        return name
+
 
     @pytest.mark.parametrize("name",
                              [
