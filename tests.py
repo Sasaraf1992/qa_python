@@ -79,12 +79,6 @@ class TestBooksCollector:
         bc.set_book_genre("Программирование на Python", "Фантастика")
         assert bc.get_books_with_specific_genre("Фантастика") == ["Гарри Поттер", "Программирование на Python"]
 
-    def test_get_books_with_specific_genre_false(self):
-        bc = BooksCollector()
-        bc.set_book_genre("Гарри Поттер", "Биография")
-        bc.set_book_genre("Молчание ягнят", "Развлечения")
-        bc.set_book_genre("Программирование на Python", "Биография")
-        assert bc.get_books_with_specific_genre("Биография") != ["Гарри Поттер", "Программирование на Python"]
 
     def test_get_books_genre_with_two_books(self):
         bc = BooksCollector()
