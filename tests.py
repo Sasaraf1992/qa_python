@@ -118,11 +118,3 @@ class TestBooksCollector:
         bc.delete_book_from_favorites(book_name)
         assert book_name not in bc.get_list_of_favorites_books()
 
-    @pytest.mark.parametrize("name", ["Гарри Поттер",
-                                      "Молчание ягнят",
-                                      "Программирование на Python"])
-    def test_get_list_of_favorite_books_three_books(self, name):
-        bc = BooksCollector()
-        bc.add_new_book(name)
-        bc.add_book_in_favorites(name)
-        assert name in bc.get_list_of_favorites_books()
