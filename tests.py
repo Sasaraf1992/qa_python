@@ -67,11 +67,11 @@ class TestBooksCollector:
         bc.set_book_genre(book_name, "Фантастика")
         assert bc.get_book_genre(book_name) == "Фантастика"
 
-    def test_get_book_genre_if_genre_false(self, book_name):
+    def test_get_book_genre_if_genre_false(self):
         bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.set_book_genre(book_name, "Биография")
-        assert bc.get_books_genre() != "Биография"
+        bc.add_new_book("Гарри Поттер")
+        bc.set_book_genre("Гарри Поттер", "Биография")
+        assert bc.get_book_genre("Гарри Поттер") != "Биография"
 
     def test_get_books_with_specific_genre_true(self):
         bc = BooksCollector()
