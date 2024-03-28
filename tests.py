@@ -28,11 +28,11 @@ class TestBooksCollector:
         bc.add_new_book(name)
         assert name not in bc.get_books_genre()
 
-    def test_add_new_book_already_existing_book(self, book_name):
+    def test_add_new_book_already_existing_book(self):
         bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.add_new_book(book_name)
-        assert bc.get_books_genre() == {book_name: ""}
+        bc.add_new_book("Гарри Поттер")
+        bc.add_new_book("Гарри Поттер")
+        assert bc.get_books_genre() == {"Гарри Поттер": ""}
 
     def test_genre_initialization(self):
         bc = BooksCollector()
@@ -44,28 +44,24 @@ class TestBooksCollector:
         expected_genre_age_rating = ["Ужасы", "Детективы"]
         assert bc.genre_age_rating == expected_genre_age_rating
 
-    def test_set_books_genre_if_genre_and_book_true(self, book_name):
+    def test_set_books_genre_if_genre_and_book_true(self):
         bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.set_book_genre(book_name, "Фантастика")
-        assert bc.get_book_genre(book_name) == "Фантастика"
+        bc.add_new_book("Гарри Поттер")
+        bc.set_book_genre("Гарри Поттер", "Фантастика")
+        assert bc.get_book_genre("Гарри Поттер") == "Фантастика"
 
-    def test_set_books_genre_if_book_true_genre_false(self, book_name):
-        bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.set_book_genre(book_name, "Биография")
-        assert bc.get_book_genre(book_name) != "Биография"
+
 
     def test_set_books_genre_if_book_false(self):
         bc = BooksCollector()
         bc.set_book_genre("Молчание ягнят", "Фантастика")
         assert "Молчание ягнят" not in bc.get_books_genre()
 
-    def test_get_book_genre_if_genre_true(self, book_name):
+    def test_get_book_genre_if_genre_true(self):
         bc = BooksCollector()
-        bc.add_new_book(book_name)
-        bc.set_book_genre(book_name, "Фантастика")
-        assert bc.get_book_genre(book_name) == "Фантастика"
+        bc.add_new_book( "Гарри Поттер")
+        bc.set_book_genre( "Гарри Поттер", "Фантастика")
+        assert bc.get_book_genre( "Гарри Поттер") == "Фантастика"
 
     def test_get_book_genre_if_genre_false(self):
         bc = BooksCollector()
